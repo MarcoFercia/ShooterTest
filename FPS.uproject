@@ -3,6 +3,16 @@
 	"EngineAssociation": "{ECD4FC33-4BE4-BE48-26AF-B2B5BB3D9DDC}",
 	"Category": "",
 	"Description": "",
+	"Modules": [
+		{
+			"Name": "FPS",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
+		}
+	],
 	"Plugins": [
 		{
 			"Name": "ModelingToolsEditorMode",
@@ -254,5 +264,8 @@
 				"Mac"
 			]
 		}
+	],
+	"TargetPlatforms": [
+		"Windows"
 	]
 }
