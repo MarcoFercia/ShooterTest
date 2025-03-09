@@ -1,6 +1,9 @@
 # Visual Studio 2015 user specific files
 .vs/
 .idea/
+Plugins/FerciaLibrary/
+
+
 # Compiled Object files
 *.slo
 *.lo
