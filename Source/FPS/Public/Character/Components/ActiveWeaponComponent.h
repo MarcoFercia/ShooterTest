@@ -41,9 +41,11 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-UFUNCTION(BlueprintCallable)
-bool SetNewWeapon(UWeaponDataAsset* _NewWeapon);
+	UFUNCTION(BlueprintCallable)
+	bool SetNewWeapon(UWeaponDataAsset* _NewWeapon);
 
+	UFUNCTION(BlueprintPure)
+	UMeshComponent* GetWeaponMesh();
 	
 protected:
 	// Called when the game starts

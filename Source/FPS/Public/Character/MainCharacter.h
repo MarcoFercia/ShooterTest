@@ -40,6 +40,9 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	USceneComponent* GetMeshToAttach();
+
+	UFUNCTION(BlueprintPure)
+	UActiveWeaponComponent* GetWeaponComponent();
 	
 protected:
 	// Called when the game starts or when spawned

@@ -17,6 +17,11 @@ AMainCharacter::AMainCharacter()
 	
 }
 
+UActiveWeaponComponent* AMainCharacter::GetWeaponComponent()
+{
+	return WeaponComponent.Get();
+}
+
 // Called when the game starts or when spawned
 void AMainCharacter::BeginPlay()
 {

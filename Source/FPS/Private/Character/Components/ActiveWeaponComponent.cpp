@@ -175,3 +175,21 @@ bool UActiveWeaponComponent::SetNewWeapon(UWeaponDataAsset* _NewWeapon)
 	return AssignNewWeapon(_NewWeapon);	
 }
 
+UMeshComponent* UActiveWeaponComponent::GetWeaponMesh()
+{
+	if (!ActualWeapon)
+	{
+		return nullptr;
+	}
+	
+	if (ActualWeapon->WeaponMeshType == SkeletalMesh)
+	{
+		return SkeletalWeaponMesh;
+	}
+	else if (ActualWeapon->WeaponMeshType == StaticMesh)
+	{
+		return StaticWeaponMesh;
+	}
+	return nullptr;
+}
+

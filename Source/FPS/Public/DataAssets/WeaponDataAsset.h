@@ -37,6 +37,9 @@ public:
 	
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly)
 	TSubclassOf<UGameplayAbility> LeftMouseAbility;
+
+	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly)
+	float MaxAmmo;
 	
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly)
 	TSubclassOf<UGameplayAbility> RightMouseAbility;
