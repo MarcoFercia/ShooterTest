@@ -39,6 +39,9 @@ public:
 	TSubclassOf<UGameplayAbility> LeftMouseAbility;
 
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly)
+	FGameplayTagContainer WeaponTags;
+	
+	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly)
 	float MaxAmmo;
 	
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly)

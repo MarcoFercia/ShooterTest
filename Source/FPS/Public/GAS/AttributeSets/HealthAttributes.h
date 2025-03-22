@@ -1,0 +1,44 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "BaseAttributeSet.h"
+#include "HealthAttributes.generated.h"
+
+/**
+ * 
+ */
+UCLASS()
+class FPS_API UHealthAttributes : public UBaseAttributeSet
+{
+public:
+	
+
+private:
+	GENERATED_BODY()
+
+public:
+	UPROPERTY(BlueprintReadOnly, Category = "Health")
+	FGameplayAttributeData Health;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Health")
+	FGameplayAttributeData MaxHealth;
+	
+protected:
+
+private:
+
+public:
+
+	ATTRIBUTE_ACCESSORS(UHealthAttributes, Health);
+	ATTRIBUTE_ACCESSORS(UHealthAttributes, MaxHealth);
+
+	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
+	virtual void PostAttributeChange(const FGameplayAttribute& Attribute, float OldValue, float NewValue) override;
+	
+	
+protected:
+
+private:	
+};

@@ -44,6 +44,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	bool SetNewWeapon(UWeaponDataAsset* _NewWeapon);
 
+	UFUNCTION(BlueprintCallable)
+	bool RemoveWeapon();
+	
 	UFUNCTION(BlueprintPure)
 	UMeshComponent* GetWeaponMesh();
 	
@@ -57,3 +60,5 @@ private:
 
 	bool AssignNewWeapon(UWeaponDataAsset* _NewWeapon);
 };
+
+

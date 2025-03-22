@@ -26,6 +26,16 @@ void UActiveWeaponComponent::BeginPlay()
 	Super::BeginPlay();	
 }
 
+bool UActiveWeaponComponent::RemoveWeapon()
+{
+	if (!ActualWeapon)
+	{
+		return false;
+	}
+	
+	return ClearOldWeapon();
+}
+
 bool UActiveWeaponComponent::ClearOldWeapon()
 {
 	UAbilitySystemComponent* ASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetOwner());
@@ -57,6 +67,9 @@ bool UActiveWeaponComponent::ClearOldWeapon()
 	SkeletalWeaponMesh->DetachFromComponent(detachmentRules);
 	StaticWeaponMesh->DetachFromComponent(detachmentRules);
 
+	//Clear GameplayTags
+	ASC->RemoveLooseGameplayTags(ActualWeapon->WeaponTags);
+	
 	//Remove Mapping Context
 
 	if (ActualWeapon->WeaponMappingContext)
@@ -70,7 +83,7 @@ bool UActiveWeaponComponent::ClearOldWeapon()
 			}
 		}
 	}	
-	
+	ActualWeapon = nullptr;
 	return true;
 }
 
@@ -129,6 +142,10 @@ bool UActiveWeaponComponent::AssignNewWeapon(UWeaponDataAsset* _NewWeapon)
 		LeftAbilityHandle = ASC->GiveAbility(RightAbilitySpec);
 	}
 
+
+	//GameplayTags
+	ASC->AddLooseGameplayTags(_NewWeapon->WeaponTags);
+	
 
 	//Mapping Context
 	if (_NewWeapon->WeaponMappingContext)
