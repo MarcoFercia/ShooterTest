@@ -8,7 +8,7 @@
 
 class UWeaponDataAsset;
 class UActiveWeaponComponent;
-class UAbilitySystemComponent;
+class UFPSAbilitySystemComponent;
 
 UCLASS()
 class FPS_API AMainCharacter : public ACharacter
@@ -21,12 +21,13 @@ public:
 	
 UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TObjectPtr<UActiveWeaponComponent> WeaponComponent;
-	
-protected:
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	TObjectPtr<UFPSAbilitySystemComponent> AbilitySystemComponent;
+protected:
+	
 private:
-	UPROPERTY()
-	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
+	
 	
 public:
 	// Sets default values for this character's properties

@@ -1,0 +1,42 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GAS/Abilities/BaseFireAbility.h"
+#include "BaseHitscanShootAbility.generated.h"
+
+/**
+ * 
+ */
+UCLASS(Abstract)
+class FPS_API UBaseHitscanShootAbility : public UBaseFireAbility
+{
+	GENERATED_BODY()
+
+	UBaseHitscanShootAbility(const FObjectInitializer& ObjectInitializer);
+	
+
+public:
+
+UPROPERTY(EditAnywhere, Category = "Weapon Configuration")
+	float WeaponTraceDistance = 1500.f;
+	
+protected:
+
+private:
+
+
+public:
+
+UFUNCTION(BlueprintCallable)
+	bool StartHitScan(FHitResult& Hit);
+	
+protected:
+
+private:
+
+	FVector GetWeaponSocketLocation();
+	
+	
+};

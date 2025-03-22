@@ -4,7 +4,7 @@
 #include "Character/MainCharacter.h"
 #include "Character/Components/ActiveWeaponComponent.h"
 #include "DataAssets/WeaponDataAsset.h"
-#include "AbilitySystemComponent.h"
+#include "GAS/FPSAbilitySystemComponent.h"
 
 
 // Sets default values
@@ -13,7 +13,7 @@ AMainCharacter::AMainCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	WeaponComponent = CreateDefaultSubobject<UActiveWeaponComponent>("Active Weapon Component");
-	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>("Ability System Component");
+	AbilitySystemComponent = CreateDefaultSubobject<UFPSAbilitySystemComponent>("Ability System Component");
 	
 }
 
@@ -26,6 +26,8 @@ UActiveWeaponComponent* AMainCharacter::GetWeaponComponent()
 void AMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	AbilitySystemComponent->GiveAbilitiesToPlayer();
+	
 	
 }
 
@@ -40,6 +42,7 @@ void AMainCharacter::Tick(float DeltaTime)
 void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	AbilitySystemComponent->BindToInputComponent(PlayerInputComponent);
 
 }
 
