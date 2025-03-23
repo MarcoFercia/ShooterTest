@@ -26,10 +26,12 @@ UActiveWeaponComponent* AMainCharacter::GetWeaponComponent()
 void AMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+	AbilitySystemComponent->InitializeAttributes();
 	AbilitySystemComponent->GiveAbilitiesToPlayer();
-	
+
 	
 }
+
 
 // Called every frame
 void AMainCharacter::Tick(float DeltaTime)

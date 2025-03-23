@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "MainCharacter.generated.h"
 
+class UGameplayEffect;
 class UWeaponDataAsset;
 class UActiveWeaponComponent;
 class UFPSAbilitySystemComponent;
@@ -25,6 +26,7 @@ UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TObjectPtr<UFPSAbilitySystemComponent> AbilitySystemComponent;
 protected:
+
 	
 private:
 	
@@ -50,6 +52,7 @@ protected:
 	virtual void BeginPlay() override;
 	
 	
+
 
 private:	
 	

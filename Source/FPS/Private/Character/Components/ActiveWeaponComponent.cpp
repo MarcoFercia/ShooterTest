@@ -6,6 +6,7 @@
 #include "AbilitySystemComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Character/MainCharacter.h"
+#include "GAS/AttributeSets/AmmoAttrubites.h"
 #include "Kismet/KismetSystemLibrary.h"
 
 // Sets default values for this component's properties
@@ -69,6 +70,12 @@ bool UActiveWeaponComponent::ClearOldWeapon()
 
 	//Clear GameplayTags
 	ASC->RemoveLooseGameplayTags(ActualWeapon->WeaponTags);
+
+	//Clear Ammo
+	ASC->SetNumericAttributeBase(UAmmoAttributes::GetMaxAmmoAttribute(),0);
+	ASC->SetNumericAttributeBase(UAmmoAttributes::GetAmmoAttribute(),0);
+	ASC->SetNumericAttributeBase(UAmmoAttributes::GetReloadTimeAttribute(),0);
+
 	
 	//Remove Mapping Context
 
@@ -145,6 +152,11 @@ bool UActiveWeaponComponent::AssignNewWeapon(UWeaponDataAsset* _NewWeapon)
 
 	//GameplayTags
 	ASC->AddLooseGameplayTags(_NewWeapon->WeaponTags);
+
+	//Give Ammo
+	ASC->SetNumericAttributeBase(UAmmoAttributes::GetMaxAmmoAttribute(), _NewWeapon->MaxAmmo);
+	ASC->SetNumericAttributeBase(UAmmoAttributes::GetAmmoAttribute(), _NewWeapon->MaxAmmo);
+	ASC->SetNumericAttributeBase(UAmmoAttributes::GetReloadTimeAttribute(), _NewWeapon->ReloadTime);
 	
 
 	//Mapping Context

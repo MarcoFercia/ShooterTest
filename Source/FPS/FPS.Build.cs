@@ -8,7 +8,7 @@ public class FPS : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "GameplayAbilities", "EnhancedInput" ,"GameplayTags","GameplayTasks"});
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "GameplayAbilities", "EnhancedInput" ,"GameplayTags","GameplayTasks","FerciaLibrary","UMG"});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

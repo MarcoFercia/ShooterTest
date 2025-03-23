@@ -15,11 +15,13 @@ GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
 
+
 UCLASS()
 class FPS_API UBaseAttributeSet : public UAttributeSet
 {
 	GENERATED_BODY()
 	
+public:
 	
 	
 	
