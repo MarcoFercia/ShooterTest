@@ -42,20 +42,22 @@ FVector UBaseHitscanShootAbility::GetWeaponSocketLocation()
 	return weaponStartPoint;
 }
 
-bool UBaseHitscanShootAbility::StartHitScan(FHitResult& Hit)
+bool UBaseHitscanShootAbility::StartHitScan(FHitResult& Hit, FVector& HitDirection,FVector& StartPosition,FVector& EndPosition)
 {
-	FVector StartTracePos = GetWeaponSocketLocation();
-	if (StartTracePos == FVector::ZeroVector)
+	 StartPosition = GetWeaponSocketLocation();
+	if (StartPosition == FVector::ZeroVector)
 	{
 		return false;
 	}
 	APlayerCameraManager* cameraManager = UGameplayStatics::GetPlayerCameraManager(this,0);
 	FVector ForwardCameraVector = cameraManager->GetActorForwardVector();
 	FVector CameraPosition = cameraManager->GetCameraLocation();
-	FVector EndTracePos =(ForwardCameraVector * WeaponTraceDistance) + CameraPosition;
+	 EndPosition =(ForwardCameraVector * WeaponTraceDistance) + CameraPosition;
+	HitDirection = (EndPosition - StartPosition).GetSafeNormal(0.05f);
 	
-	bool hitted = GetWorld()->LineTraceSingleByChannel(Hit,StartTracePos,EndTracePos,ECC_Visibility);
+	
+	bool hitted = GetWorld()->LineTraceSingleByChannel(Hit,StartPosition,EndPosition,ECC_Visibility);
 	FColor debuColor = hitted ? FColor::Green : FColor::Red;
-	DrawDebugLine(GetWorld(),StartTracePos,EndTracePos,debuColor,false,5.f,0,1.4f);
+	//DrawDebugLine(GetWorld(),StartPosition,EndPosition,debuColor,false,5.f,0,1.4f);
 	return hitted;
 }

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
+#include "BaseFPSCharacter.h"
 #include "MainCharacter.generated.h"
 
 class UGameplayEffect;
@@ -12,7 +12,7 @@ class UActiveWeaponComponent;
 class UFPSAbilitySystemComponent;
 
 UCLASS()
-class FPS_API AMainCharacter : public ACharacter
+class FPS_API AMainCharacter : public ABaseFPSCharacter
 {
 	GENERATED_BODY()
 public:

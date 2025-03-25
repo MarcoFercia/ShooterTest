@@ -153,10 +153,12 @@ bool UActiveWeaponComponent::AssignNewWeapon(UWeaponDataAsset* _NewWeapon)
 	//GameplayTags
 	ASC->AddLooseGameplayTags(_NewWeapon->WeaponTags);
 
-	//Give Ammo
+	//Give Weapon attributes
 	ASC->SetNumericAttributeBase(UAmmoAttributes::GetMaxAmmoAttribute(), _NewWeapon->MaxAmmo);
 	ASC->SetNumericAttributeBase(UAmmoAttributes::GetAmmoAttribute(), _NewWeapon->MaxAmmo);
 	ASC->SetNumericAttributeBase(UAmmoAttributes::GetReloadTimeAttribute(), _NewWeapon->ReloadTime);
+	ASC->SetNumericAttributeBase(UAmmoAttributes::GetDamageAttribute(), _NewWeapon->Damage);
+
 	
 
 	//Mapping Context

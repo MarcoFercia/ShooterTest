@@ -3,14 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "BaseAttributeSet.h"
+
+#include "DamageAttributeSet.h"
 #include "AmmoAttrubites.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class FPS_API UAmmoAttributes : public UBaseAttributeSet
+class FPS_API UAmmoAttributes : public UDamageAttributeSet
 {
 	GENERATED_BODY()
 public:

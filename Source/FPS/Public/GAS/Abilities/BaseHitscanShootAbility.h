@@ -30,7 +30,7 @@ private:
 public:
 
 UFUNCTION(BlueprintCallable)
-	bool StartHitScan(FHitResult& Hit);
+	bool StartHitScan(FHitResult& Hit, FVector& HitDirection,FVector& StartPosition,FVector& EndPosition);
 	
 protected:
 
