@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// © 2025 Marco Fernandez garcia <marcoferciatr@gmail.com>
 
 #pragma once
 
@@ -23,8 +23,7 @@ public:
 UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TObjectPtr<UActiveWeaponComponent> WeaponComponent;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	TObjectPtr<UFPSAbilitySystemComponent> AbilitySystemComponent;
+	
 protected:
 
 	
@@ -33,7 +32,7 @@ private:
 	
 public:
 	// Sets default values for this character's properties
-	AMainCharacter();
+	AMainCharacter(const FObjectInitializer& ObjectInitializer);
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

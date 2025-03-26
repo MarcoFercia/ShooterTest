@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// © 2025 Marco Fernandez garcia <marcoferciatr@gmail.com>
 
 
 #include "Character/MainCharacter.h"
@@ -8,12 +8,12 @@
 
 
 // Sets default values
-AMainCharacter::AMainCharacter()
+AMainCharacter::AMainCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	WeaponComponent = CreateDefaultSubobject<UActiveWeaponComponent>("Active Weapon Component");
-	AbilitySystemComponent = CreateDefaultSubobject<UFPSAbilitySystemComponent>("Ability System Component");
+	
 	
 }
 
@@ -26,9 +26,6 @@ UActiveWeaponComponent* AMainCharacter::GetWeaponComponent()
 void AMainCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	AbilitySystemComponent->InitializeAttributes();
-	AbilitySystemComponent->GiveAbilitiesToPlayer();
-
 	
 }
 
@@ -37,7 +34,6 @@ void AMainCharacter::BeginPlay()
 void AMainCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
@@ -45,6 +41,5 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	AbilitySystemComponent->BindToInputComponent(PlayerInputComponent);
-
 }
 

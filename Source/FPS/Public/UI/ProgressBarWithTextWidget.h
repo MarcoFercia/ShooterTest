@@ -1,20 +1,19 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// © 2025 Marco Fernandez garcia <marcoferciatr@gmail.com>
 
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AttributeSet.h"
-#include "Widgets/BaseWidgets/FerciaUserWidget.h"
+#include "BaseProgressAttributeBar.h"
 #include "ProgressBarWithTextWidget.generated.h"
 
-class UFerciaProgressBar;
+
 class UFerciaText;
-class UAsyncTaskAttributeChanged;
+
 /**
  * 
  */
 UCLASS()
-class FPS_API UProgressBarWithTextWidget : public UFerciaUserWidget
+class FPS_API UProgressBarWithTextWidget : public UBaseProgressAttributeBar
 {
 	GENERATED_BODY()
 
@@ -25,46 +24,17 @@ public:
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, meta= (BindWidget))
 	UFerciaText* MaxValueText;
-
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, meta= (BindWidget))
-	UFerciaProgressBar* ProgressBar;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Attributes To Scan")
-	FGameplayAttribute actualAttribute;
-	UPROPERTY(EditDefaultsOnly,Category = "Attributes To Scan")
-	FGameplayAttribute MaxAttribute;
 	
 protected:
-
-
 	
-private:
-
-	UPROPERTY()
-	float ActualValue;
-	UPROPERTY()
-	float MaxValue;
-
-	UPROPERTY()
-	UAsyncTaskAttributeChanged* ActualListenTask;
-	UPROPERTY()
-	UAsyncTaskAttributeChanged* MaxListenTask;
-	
+private:	
 public:
 
 	UFUNCTION()
-	void UpdateUI();
+	virtual void UpdateUI() override;
 	
 protected:
-	UFUNCTION()
-	void OnActualAttributeChanged(FGameplayAttribute Attribute, float NewValue, float OldValue);
-	UFUNCTION()
-	void OnMaxAttributeChanged(FGameplayAttribute Attribute, float NewValue, float OldValue);
-
-	virtual void NativeConstruct() override;
-	virtual void NativeDestruct() override;
 	
-private:
-	
+private:	
 	
 };

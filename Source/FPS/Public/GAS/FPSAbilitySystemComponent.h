@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// © 2025 Marco Fernandez garcia <marcoferciatr@gmail.com>
 
 #pragma once
 
@@ -36,13 +36,15 @@ protected:
 private:
 
 	
-
-	
 public:
-	void GiveAbilitiesToPlayer();
+	void GiveAbilitiesToOwner();
 	void InitializeAttributes();
+
+	void ApplyGameplayEffect(TSubclassOf<UGameplayEffect> _effectToApply);
 	
 protected:
+
+virtual void BeginPlay() override;
 	
 private:
 	

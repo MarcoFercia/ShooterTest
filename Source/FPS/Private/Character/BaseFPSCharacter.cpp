@@ -1,15 +1,16 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// © 2025 Marco Fernandez garcia <marcoferciatr@gmail.com>
 
 
 #include "Character/BaseFPSCharacter.h"
+#include "GAS/FPSAbilitySystemComponent.h"
 
 
 // Sets default values
-ABaseFPSCharacter::ABaseFPSCharacter()
+ABaseFPSCharacter::ABaseFPSCharacter(const FObjectInitializer& ObjectInitializer)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	AbilitySystemComponent = CreateDefaultSubobject<UFPSAbilitySystemComponent>("Ability System Component");
 }
 
 // Called when the game starts or when spawned

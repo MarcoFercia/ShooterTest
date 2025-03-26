@@ -1,10 +1,12 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// © 2025 Marco Fernandez garcia <marcoferciatr@gmail.com>
 
 
 #include "Character/MainCharacterController.h"
 
+#include "AbilitySystemBlueprintLibrary.h"
 #include "EnhancedInputComponent.h"
 #include "DataAssets/InputActionsConfiguration.h"
+#include "UI/PlayerHUD.h"
 
 
 void AMainCharacterController::SetupInputComponent()
@@ -23,4 +25,15 @@ void AMainCharacterController::SetupInputComponent()
 void AMainCharacterController::CharacterMove(const FInputActionValue& InputActionValue)
 {
 	
+}
+
+void AMainCharacterController::BeginPlay()
+{
+	Super::BeginPlay();
+	APlayerHUD* playerHUD = Cast<APlayerHUD>(GetHUD());
+	if (!playerHUD)
+	{
+		return;
+	}
+	playerHUD->InitializeHUD(UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(GetPawn()));	
 }

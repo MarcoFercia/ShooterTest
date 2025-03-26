@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// © 2025 Marco Fernandez garcia <marcoferciatr@gmail.com>
 
 
 #include "GAS/FPSAbilitySystemComponent.h"
@@ -12,7 +12,7 @@ void UFPSAbilitySystemComponent::PostInitProperties()
 	Super::PostInitProperties();
 }
 
-void UFPSAbilitySystemComponent::GiveAbilitiesToPlayer()
+void UFPSAbilitySystemComponent::GiveAbilitiesToOwner()
 {
 	if (AbilitiesDataAsset)
 	{
@@ -21,9 +21,6 @@ void UFPSAbilitySystemComponent::GiveAbilitiesToPlayer()
 			K2_GiveAbility(it);
 		}
 	}
-	
-	
-
 }
 
 void UFPSAbilitySystemComponent::InitializeAttributes()
@@ -35,8 +32,23 @@ void UFPSAbilitySystemComponent::InitializeAttributes()
 	}
 	SetSpawnedAttributes(attributesSets);
 
+	if (GameplayEffectClass)
+	{
+		ApplyGameplayEffect(GameplayEffectClass);
+	}
+}
 
-	UGameplayEffect* effect = GameplayEffectClass->GetDefaultObject<UGameplayEffect>();
+void UFPSAbilitySystemComponent::ApplyGameplayEffect(TSubclassOf<UGameplayEffect> _effectToApply)
+{
+	UGameplayEffect* effect = _effectToApply->GetDefaultObject<UGameplayEffect>();
 	FGameplayEffectContextHandle context;
 	ApplyGameplayEffectToSelf(effect,0,context);
+}
+
+void UFPSAbilitySystemComponent::BeginPlay()
+{
+	Super::BeginPlay();
+
+	InitializeAttributes();
+	GiveAbilitiesToOwner();
 }
