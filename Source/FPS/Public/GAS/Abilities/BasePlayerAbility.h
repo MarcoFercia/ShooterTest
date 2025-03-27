@@ -3,19 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Abilities/GameplayAbility.h"
-#include "InputTriggers.h"
+#include "BaseFPSAbility.h"
 #include "EnhancedInputComponent.h"
 #include "BasePlayerAbility.generated.h"
 
 class AMainCharacter;
+class UInputAction;
 
-UENUM(BlueprintType)
-enum EAbilityActivationPolicy
-{
-	Passive  UMETA(DisplayName = "Passive"),
-	Active    UMETA(DisplayName = "Active")
-};
 
 UENUM(BlueprintType)
 enum EActivationMethod
@@ -25,13 +19,11 @@ enum EActivationMethod
 };
 
 
-class UInputAction;
-
 /**
  * 
  */
 UCLASS(Abstract)
-class FPS_API UBasePlayerAbility : public UGameplayAbility
+class FPS_API UBasePlayerAbility : public UBaseFPSAbility
 {
 	GENERATED_BODY()
 
@@ -39,14 +31,8 @@ class FPS_API UBasePlayerAbility : public UGameplayAbility
 	UBasePlayerAbility(const FObjectInitializer& ObjectInitializer);
 
 public:
-
 	
-	
-	
-protected:
-
-	UPROPERTY(EditDefaultsOnly, Category = "Ability Configuration")
-	TEnumAsByte<EAbilityActivationPolicy> AbilityPolicy = Active;
+protected:	
 	
 	UPROPERTY(EditDefaultsOnly,Category = "Ability Configuration" ,DisplayName = "Input to Activate Ability",meta=(EditCondition="AbilityPolicy==EAbilityActivationPolicy::Active", EditConditionHides) )
 	UInputAction* InputAction = nullptr;	
@@ -65,14 +51,8 @@ UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<AMainCharacter> PlayerCharacter = nullptr;
 	
 private:
-	UPROPERTY(Transient)
-	FGameplayAbilitySpec OwnAbilitySpec;
-
-
-	TArray<FInputBindingHandle*> InputBindings;
-	
+	TArray<FInputBindingHandle*> InputBindings;	
 public:
-
 	
 protected:
 

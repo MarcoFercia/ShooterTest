@@ -2,7 +2,6 @@
 
 
 #include "GAS/Abilities/BasePlayerAbility.h"
-
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
 #include "EnhancedInputComponent.h"
@@ -18,22 +17,14 @@ UBasePlayerAbility::UBasePlayerAbility(const FObjectInitializer& ObjectInitializ
 void UBasePlayerAbility::OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec)
 {
 	Super::OnGiveAbility(ActorInfo, Spec);
-	OwnAbilitySpec = Spec;
-	PlayerCharacter = Cast<AMainCharacter>(ActorInfo->OwnerActor);
-
-	if (AbilityPolicy == Passive)
-	{
-		GetAbilitySystemComponentFromActorInfo()->TryActivateAbility(OwnAbilitySpec.Handle);
-		return;
-	}
 	
+	PlayerCharacter = Cast<AMainCharacter>(ActorInfo->OwnerActor);	
 	AMainCharacterController* MyController = Cast<AMainCharacterController>(PlayerCharacter->GetController());	
 	UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(MyController->InputComponent);
 	if (!InputAction)
 	{
 		return;
 	}
-
 	
 	if (EnumHasAnyFlags(static_cast<ETriggerEvent>(FunctionsToBind),ETriggerEvent::Triggered))
 	{

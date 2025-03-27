@@ -3,29 +3,28 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GAS/Abilities/BaseFireAbility.h"
-#include "BaseHitscanShootAbility.generated.h"
+#include "GAS/Abilities/BaseShootAbility.h"
+#include "HitScanShootAbility.generated.h"
 
 /**
  * 
  */
 UCLASS(Abstract)
-class FPS_API UBaseHitscanShootAbility : public UBaseFireAbility
+class FPS_API UHitScanShootAbility : public UBaseShootAbility
 {
 	GENERATED_BODY()
 
-	UBaseHitscanShootAbility(const FObjectInitializer& ObjectInitializer);
+	UHitScanShootAbility(const FObjectInitializer& ObjectInitializer);
 	
 
 public:
 
-UPROPERTY(EditAnywhere, Category = "Weapon Configuration")
+	UPROPERTY(EditAnywhere, Category = "Weapon Configuration")
 	float WeaponTraceDistance = 1500.f;
 	
 protected:
 
 private:
-
 
 public:
 
@@ -34,9 +33,9 @@ UFUNCTION(BlueprintCallable)
 	
 protected:
 
+virtual void ShootProjectile(TArray<FHitResult>& _hits) override;
+	
 private:
-
-	FVector GetWeaponSocketLocation();
 	
 	
 };
