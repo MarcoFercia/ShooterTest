@@ -9,6 +9,7 @@
 #include "Character/MainCharacter.h"
 #include "Character/Components/ActiveWeaponComponent.h"
 #include "Core/TagsMacros.h"
+#include "GAS/AttributeSets/AmmoAttrubites.h"
 #include "Kismet/KismetMathLibrary.h"
 
 
@@ -19,14 +20,16 @@ void UBaseShootAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 	TArray<FHitResult> Hits;	
 	ShootProjectile(Hits);
 	ApplyDamageEffect(Hits);
+
+	float FireRate = GetAbilitySystemComponentFromActorInfo()->GetNumericAttribute(UAmmoAttributes::GetFireRateAttribute());
 	
-	if (UKismetMathLibrary::NearlyEqual_FloatFloat(TimeBetweenShots,0.f))
+	if (UKismetMathLibrary::NearlyEqual_FloatFloat(FireRate,0.f))
 	{
 		OnTimerFinish();
 		return;
 	}
 	
-	DelayTask = UAbilityTask_WaitDelay::WaitDelay(this,TimeBetweenShots);
+	DelayTask = UAbilityTask_WaitDelay::WaitDelay(this,FireRate);
 	DelayTask->OnFinish.AddDynamic(this,&UBaseShootAbility::OnTimerFinish);
 	DelayTask->Activate();
 }
@@ -48,14 +51,12 @@ void UBaseShootAbility::EndAbility(const FGameplayAbilitySpecHandle Handle, cons
 	{
 		UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetAvatarActorFromActorInfo(),GET_TAG(INPUT_RELOAD_TAG),FGameplayEventData());
 	}
-	
 }
 
 void UBaseShootAbility::ShootProjectile(TArray<FHitResult>& _hits)
 {
+	
 }
-
-
 
 void UBaseShootAbility::ExecuteCues_Implementation(FVector _StartPos, FVector _EndPos)
 {
@@ -87,12 +88,8 @@ void UBaseShootAbility::ApplyDamageEffect(TArray<FHitResult>& _hits)
 void UBaseShootAbility::ApplyDamageEffectToTarget(FHitResult& _hit)
 {
 	FGameplayAbilityTargetData_SingleTargetHit* TargetData = new FGameplayAbilityTargetData_SingleTargetHit(_hit);
-	
 	TArray<FActiveGameplayEffectHandle> temp = ApplyGameplayEffectToTarget(CurrentSpecHandle,CurrentActorInfo,CurrentActivationInfo,TargetData,HitEffect,1);
 }
-
-
-
 
 FTransform UBaseShootAbility::GetWeaponSocketTransform()
 {

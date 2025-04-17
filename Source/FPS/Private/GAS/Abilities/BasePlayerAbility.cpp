@@ -17,7 +17,7 @@ UBasePlayerAbility::UBasePlayerAbility(const FObjectInitializer& ObjectInitializ
 void UBasePlayerAbility::OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec)
 {
 	Super::OnGiveAbility(ActorInfo, Spec);
-	
+	CurrentActorInfo = ActorInfo;
 	PlayerCharacter = Cast<AMainCharacter>(ActorInfo->OwnerActor);	
 	AMainCharacterController* MyController = Cast<AMainCharacterController>(PlayerCharacter->GetController());	
 	UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(MyController->InputComponent);
@@ -50,7 +50,9 @@ void UBasePlayerAbility::OnGiveAbility(const FGameplayAbilityActorInfo* ActorInf
 	{
 		FEnhancedInputActionEventBinding* temp = &EnhancedInputComponent->BindAction(InputAction,ETriggerEvent::Completed,this, &UBasePlayerAbility::OnInputCompleted);
 		InputBindings.Add(temp);
-	}	
+	}
+	
+	OnGivenAbility(*ActorInfo,Spec);
 }
 
 void UBasePlayerAbility::OnRemoveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec)
@@ -80,7 +82,7 @@ void UBasePlayerAbility::OnInputTriggered_Implementation(const FInputActionValue
 {
 	if (bStartAbilityFromCode && ActivationMethod == EActivationMethod::Triggered)
 	{
-		GetAbilitySystemComponentFromActorInfo()->TryActivateAbility(OwnAbilitySpec.Handle);
+		CurrentActorInfo->AbilitySystemComponent->TryActivateAbilityByClass(this->GetClass());
 	}
 }
 
@@ -88,7 +90,7 @@ void UBasePlayerAbility::OnInputStarted_Implementation(const FInputActionValue& 
 {
 	if (bStartAbilityFromCode && ActivationMethod == EActivationMethod::Started)
 	{
-		GetAbilitySystemComponentFromActorInfo()->TryActivateAbility(OwnAbilitySpec.Handle);
+		CurrentActorInfo->AbilitySystemComponent->TryActivateAbilityByClass(this->GetClass());
 	}
 }
 

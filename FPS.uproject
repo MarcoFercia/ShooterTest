@@ -13,7 +13,10 @@
 				"DeveloperSettings",
 				"GameplayAbilities",
 				"FerciaLibrary",
-				"UMG"
+				"UMG",
+				"StateTreeModule",
+				"AIModule",
+				"CoreUObject"
 			]
 		}
 	],

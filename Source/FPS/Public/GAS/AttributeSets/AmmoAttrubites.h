@@ -7,9 +7,8 @@
 #include "DamageAttributeSet.h"
 #include "AmmoAttrubites.generated.h"
 
-/**
- * 
- */
+
+
 UCLASS()
 class FPS_API UAmmoAttributes : public UDamageAttributeSet
 {
@@ -24,6 +23,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Ammo")
 	FGameplayAttributeData ReloadTime;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Ammo")
+	FGameplayAttributeData FireRate;
 	
 protected:
 
@@ -34,6 +36,7 @@ public:
 	ATTRIBUTE_ACCESSORS(UAmmoAttributes,Ammo);
 	ATTRIBUTE_ACCESSORS(UAmmoAttributes,MaxAmmo);
 	ATTRIBUTE_ACCESSORS(UAmmoAttributes,ReloadTime);
+	ATTRIBUTE_ACCESSORS(UAmmoAttributes,FireRate);
 
 	
 	virtual void PreAttributeBaseChange(const FGameplayAttribute& Attribute, float& NewValue) const override;

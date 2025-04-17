@@ -4,23 +4,37 @@
 
 #include "CoreMinimal.h"
 #include "Components/StateTreeAIComponent.h"
-#include "MyClass.generated.h"
+#include "BaseStateTreeComponent.generated.h"
 
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class FPS_API UMyClass : public UStateTreeAIComponent
+class FPS_API UBaseStateTreeComponent : public UStateTreeAIComponent
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this component's properties
-	UMyClass();
+	UBaseStateTreeComponent(const FObjectInitializer& ObjectInitializer);
 
 protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
+
+
+private:
 
 public:
+	// Called when the game starts
+	virtual void BeginPlay() override;
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+void SetStateTreeAsset(FStateTreeReference _StateTreeAsset);
+
+	
+protected:
+
+private:
+
+
+
+
 };

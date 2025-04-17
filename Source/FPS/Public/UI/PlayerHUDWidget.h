@@ -7,9 +7,6 @@
 #include "PlayerHUDWidget.generated.h"
 
 class UAbilitySystemComponent;
-/**
- * 
- */
 class UProgressBarWithTextWidget;
 
 

@@ -2,8 +2,8 @@
 
 
 #include "UI/PlayerHUD.h"
-
 #include "UI/PlayerHUDWidget.h"
+#include "Blueprint/UserWidget.h"
 
 
 UPlayerHUDWidget* APlayerHUD::GetPlayerHUDWidget()
@@ -30,11 +30,28 @@ void APlayerHUD::BeginPlay()
 	}
 }
 
+void APlayerHUD::AddToHUD(UFerciaUserWidget* _Widget)
+{
+	_Widget->AddToViewport(0);
+	HUDWidgets.AddUnique(_Widget);
+}
+
+void APlayerHUD::ShowHUD()
+{
+	Super::ShowHUD();
+	
+	for (UFerciaUserWidget* it : HUDWidgets)
+	{
+		it->SetHideFromHUD(!bShowHUD);		
+	}
+}
+
+
 void APlayerHUD::CreateWidgetHUD()
 {
 	if (PLayerHUDWidgetClass)
 	{
 		HUDWidgetRef = CreateWidget<UPlayerHUDWidget>(PlayerOwner, PLayerHUDWidgetClass);
-		HUDWidgetRef->AddToViewport();
+		AddToHUD(HUDWidgetRef);
 	}
 }

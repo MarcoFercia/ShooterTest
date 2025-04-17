@@ -9,6 +9,7 @@
 class UFPSAbilitySystemComponent;
 class UBaseWidgetComponent;
 class UEnemyBuilderDataAsset;
+class UStateTreeAIComponent;
 /**
  * 
  */
@@ -21,7 +22,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UBaseWidgetComponent> HealthBarComponent;
-
 	
 protected:
 	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
@@ -32,13 +32,18 @@ private:
 public:
 
 	bool InitializeEnemy(UEnemyBuilderDataAsset* EnemyAsset);
+	bool clearEnemy();
+
+
+	UFUNCTION(BlueprintCallable)
+	void StartLogic();
 	
 protected:
 
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 	
-	
 private:
 	
 };
+

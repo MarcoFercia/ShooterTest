@@ -47,6 +47,8 @@ public:
 	float MaxAmmo;
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly)
 	float ReloadTime = 1.f;
+	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly)
+	float FireRate = 0.2f;
 	
 	UPROPERTY(EditDefaultsOnly,BlueprintReadOnly)
 	TSubclassOf<UGameplayAbility> RightMouseAbility;

@@ -12,5 +12,7 @@ FGameplayTag::RequestGameplayTag(x)
 #define INPUT_MOVE_TAG "InputTag.Ability.Move"
 #define INPUT_RELOAD_TAG "InputTag.Ability.Reload"
 #define INFINITE_AMMO_TAG "Message.Weapon.InfiniteAmmo"
+#define HAS_WEAPON_TAG "Player.State.HasWeapon"
+#define DEATH_TAG "Player.State.Dead"
 
 

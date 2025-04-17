@@ -5,10 +5,9 @@
 #include "GAS/FPSAbilitySystemComponent.h"
 
 
-// Sets default values
+
 ABaseFPSCharacter::ABaseFPSCharacter(const FObjectInitializer& ObjectInitializer)
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	AbilitySystemComponent = CreateDefaultSubobject<UFPSAbilitySystemComponent>("Ability System Component");
 }
@@ -27,10 +26,8 @@ void ABaseFPSCharacter::Tick(float DeltaTime)
 
 }
 
-// Called to bind functionality to input
-void ABaseFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+
+void ABaseFPSCharacter::DeathCharacter_Implementation()
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	
 }
-

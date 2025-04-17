@@ -75,6 +75,8 @@ bool UActiveWeaponComponent::ClearOldWeapon()
 	ASC->SetNumericAttributeBase(UAmmoAttributes::GetMaxAmmoAttribute(),0);
 	ASC->SetNumericAttributeBase(UAmmoAttributes::GetAmmoAttribute(),0);
 	ASC->SetNumericAttributeBase(UAmmoAttributes::GetReloadTimeAttribute(),0);
+	ASC->SetNumericAttributeBase(UAmmoAttributes::GetFireRateAttribute(),0);
+	
 
 	
 	//Remove Mapping Context
@@ -158,6 +160,7 @@ bool UActiveWeaponComponent::AssignNewWeapon(UWeaponDataAsset* _NewWeapon)
 	ASC->SetNumericAttributeBase(UAmmoAttributes::GetAmmoAttribute(), _NewWeapon->MaxAmmo);
 	ASC->SetNumericAttributeBase(UAmmoAttributes::GetReloadTimeAttribute(), _NewWeapon->ReloadTime);
 	ASC->SetNumericAttributeBase(UAmmoAttributes::GetDamageAttribute(), _NewWeapon->Damage);
+	ASC->SetNumericAttributeBase(UAmmoAttributes::GetFireRateAttribute(), _NewWeapon->FireRate);
 
 	
 

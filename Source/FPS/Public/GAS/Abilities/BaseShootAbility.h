@@ -20,10 +20,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = "Weapon Configuration")
 	FGameplayTagContainer CuesToActivate;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = "Weapon Configuration")
-	float TimeBetweenShots = 0.2f;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = "Weapon Configuration")
 	TSubclassOf<UGameplayEffect> HitEffect;
 
@@ -39,9 +36,6 @@ public:
 	virtual bool CommitAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, FGameplayTagContainer* OptionalRelevantTags = nullptr) override;
 	virtual void EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled) override;
 
-	
-
-	
 protected:
 
 	//Inside this function you should call ExecuteCues to play VFX

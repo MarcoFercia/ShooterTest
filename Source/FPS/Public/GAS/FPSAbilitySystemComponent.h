@@ -26,8 +26,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Configuration");
 	UAbilitiesDataAsset* AbilitiesDataAsset;
 	
-	UPROPERTY(EditDefaultsOnly, Category = "Configuration");
-	TArray<TSubclassOf<UAttributeSet>> AttributeSets;
+	UPROPERTY(EditDefaultsOnly, Category = "Configuration", DisplayName = "Characters Attributes");
+	TArray<TSubclassOf<UAttributeSet>> AttributeSetsClass;
 
 
 	UPROPERTY(EditDefaultsOnly)
@@ -38,7 +38,9 @@ private:
 	
 public:
 	void GiveAbilitiesToOwner();
+	void GiveAbilitiesToOwner(TArray<TSubclassOf<UGameplayAbility>>& _abilities);
 	void InitializeAttributes();
+	void InitializeAttributes(TArray<TSubclassOf<UAttributeSet>>& _newAttributes);
 
 	void ApplyGameplayEffect(TSubclassOf<UGameplayEffect> _effectToApply);
 	

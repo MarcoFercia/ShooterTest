@@ -23,10 +23,33 @@ void UFPSAbilitySystemComponent::GiveAbilitiesToOwner()
 	}
 }
 
+void UFPSAbilitySystemComponent::GiveAbilitiesToOwner(TArray<TSubclassOf<UGameplayAbility>>& _abilities)
+{
+	for (auto it : _abilities)
+		{
+			K2_GiveAbility(it);
+		}	
+}
+
 void UFPSAbilitySystemComponent::InitializeAttributes()
 {
 	TArray<UAttributeSet*> attributesSets;	
-	for (auto it : AttributeSets)
+	for (auto it : AttributeSetsClass)
+	{
+		attributesSets.Add(NewObject<UAttributeSet>(GetAvatarActor(),it));
+	}
+	SetSpawnedAttributes(attributesSets);
+
+	if (GameplayEffectClass)
+	{
+		ApplyGameplayEffect(GameplayEffectClass);
+	}
+}
+
+void UFPSAbilitySystemComponent::InitializeAttributes(TArray<TSubclassOf<UAttributeSet>>& _newAttributes)
+{
+	TArray<UAttributeSet*> attributesSets;	
+	for (auto it : _newAttributes)
 	{
 		attributesSets.Add(NewObject<UAttributeSet>(GetAvatarActor(),it));
 	}

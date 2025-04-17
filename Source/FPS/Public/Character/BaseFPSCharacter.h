@@ -15,25 +15,28 @@ class FPS_API ABaseFPSCharacter : public ACharacter
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	ABaseFPSCharacter(const FObjectInitializer& ObjectInitializer);
 
+public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	TObjectPtr<UFPSAbilitySystemComponent> AbilitySystemComponent;
-	
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
+	
+private:
 	
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
 	
+	UFUNCTION(BlueprintNativeEvent)
+	void DeathCharacter();
+	
+protected:
+	virtual void BeginPlay() override;
+	
+private:
 	
 };
+
+
